@@ -23,8 +23,12 @@ ActiveRecord::Schema.define(version: 20150728185629) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.string "photo_url"
+    t.string   "created_by"
+    t.string   "post_title"
+    t.string   "post_content"
+    t.string   "post_edit"
+    t.datetime "created_at"
+    t.datetime "edited_at"
   end
 
 end

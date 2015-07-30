@@ -1,0 +1,12 @@
+<%= form_for @comment do |f| %>
+  <%= f.label :created_by %>
+  <%= f.text_field :created_by %>
+
+  <%= f.label :comment_edit %>
+  <%= f.text_field :comment_edit %>
+
+  <%= f.label :comment_at %>
+  <%= f.text_field :comment_at %>
+
+  <%= f.submit %>
+<% end %>
