@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'artists#index'
+  root to: 'posts#index'
 
   resources :posts do
     resources :comments

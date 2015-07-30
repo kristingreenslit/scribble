@@ -1,21 +1,12 @@
 <%= form_for @post do |f| %>
-  <%= f.label :created_by %>
-  <%= f.text_field :created_by %>
+  <%= f.label :author %>
+  <%= f.text_field :author %>
 
-  <%= f.label :post_title %>
-  <%= f.text_field :post_title %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
-  <%= f.label :post_content %>
-  <%= f.text_field :post_content %>
-
-  <%= f.label :post_edit %>
-  <%= f.text_field :post_edit %>
-
-  <%= f.label :created_at %>
-  <%= f.text_field :created_at %>
-
-  <%= f.label :edited_at %>
-  <%= f.text_field :edited_at %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
 
   <%= f.submit %>
 <% end %>

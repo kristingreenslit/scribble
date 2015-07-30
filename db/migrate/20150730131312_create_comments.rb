@@ -1,9 +1,9 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
-      t.string :created_by
-      t.string :comment_edit
-      t.datetime :comment_at
+    t.string :author
+    t.string :content
+    t.references :post, index: true, foreign_key: true
     end
   end
 end

@@ -6,30 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require_relative './comment_data.rb'
-require_relative './post_data.rb'
-
 Comment.destroy_all
 Post.destroy_all
 
-comment_data = get_comment_data()
-post_data = get_post_data()
+post1 = Post.create(author: "Jane Doe", title: "Sample Post", content: "Sample Content")
 
-comments.each do |comment|
-  Comment.create!({
-    created_by:          post[:name]
-    comment_edit:        comment[:edit],
-    comment_at:          post[:create],
-  })
-
-  posts.each do |song|
-    Post.create!({
-      created_by:          post[:name]
-      post_title:          post[:title],
-      post_content:        post[:content],
-      post_edit:           post[:edit],
-      created_at:          post[:create],
-      edited_at:           post[:edit]
-    })
-  end
-end
+post1.comments.create(author: "Jim Doe", content: "My Content")

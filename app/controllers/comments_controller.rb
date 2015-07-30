@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
 
     #show
     def show
+      binding.pry
       @comments = Comment.find(params[:id])
     end
 
@@ -40,7 +41,7 @@ class CommentsController < ApplicationController
 
 private
   def create_params
-    params.require(:post).permit(:created_by, :comment_edit, :comment_at))
+    params.require(:post).permit(:created_by, :comment_edit, :comment_at)
   end
 
 end

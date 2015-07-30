@@ -1,12 +1,10 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.string :created_by
-      t.string :post_title
-      t.string :post_content
-      t.string :post_edit
+      t.string :author
+      t.string :title
+      t.string :content
       t.datetime :created_at
-      t.datetime :edited_at
     end
   end
 end
