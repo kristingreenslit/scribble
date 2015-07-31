@@ -1,12 +1,15 @@
-<!-- <%= form_for @comment do |f| %>
-  <%= f.label :created_by %>
-  <%= f.text_field :created_by %>
-
-  <%= f.label :comment_edit %>
-  <%= f.text_field :comment_edit %>
-
-  <%= f.label :comment_at %>
-  <%= f.text_field :comment_at %>
-
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :author, "Author: "%>
+  <%= f.text_field :author %>
+<br>
+  <%= f.label :content, "Content: " %>
+  <br><!-- <%= f.text_field :content %> -->
+  <%= f.text_area :content, size: "60x12" %>
+  <%= f.hidden_field :post_id %>
+<br>
   <%= f.submit %>
-<% end %> -->
+<% end %>
+
+<br>
+<a href="/posts">cancel</a></h2>
+<br>

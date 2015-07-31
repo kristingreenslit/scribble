@@ -8,7 +8,6 @@ class PostsController < ApplicationController
       @post = Post.new
     end
 
-
     def create
       @post = Post.create!(whitelisted_post_params)
       if @post.save
@@ -24,6 +23,12 @@ class PostsController < ApplicationController
     def show
       # binding.pry
       @post = Post.find(params[:id])
+      # @comment = Comment.new
+      # @comments = Comment.find(params[:id])
+      # @comments = Comment.all
+      @comments = @post.comments.all
+      @comment = @post.comments.new
+      # redirect_to post_path(@comment)
     end
 
     # edit

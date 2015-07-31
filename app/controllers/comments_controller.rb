@@ -1,33 +1,37 @@
 class CommentsController < ApplicationController
 
-  def index
+    def index
       @comments = Comment.all
     end
 
     def new
-      @comments = Comment.all
+      @post = Post.find(params[:post_id])
+      @comment = Comment.new
     end
 
     def create
-      @comments = Comment.create!(comment_params)
+      @post = Post.find(params[:post_id])
+      @comment = Comment.create!(whitelisted_comment_params)
       redirect_to comment_path(@comment)
     end
-
     #show
     def show
-      binding.pry
-      @comments = Comment.find(params[:id])
+      # binding.pry
+      @post = Post.find(params[:post_id])
+      @comment = Comment.find(params[:id])
+            # redirect_to post_path(@post)
     end
 
     # edit
     def edit
-      @comments = Comment.find(params[:id])
+      @post = Post.find(params[:post_id])
+      @comment = Comment.find(params[:id])
     end
 
     # update
     def update
       @comment = Comment.find(params[:id])
-      @comment.update(comment_params)
+      @comment.update(whitelisted_comment_params)
       redirect_to comment_path(@comment)
     end
 
@@ -38,10 +42,8 @@ class CommentsController < ApplicationController
       redirect_to comment_path
     end
 
-
-private
-  def create_params
-    params.require(:post).permit(:created_by, :comment_edit, :comment_at)
-  end
-
+  private
+    def whitelisted_comment_params
+      params.require(:post).permit(:author,:content)
+    end
 end
