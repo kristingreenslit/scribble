@@ -6,12 +6,18 @@ class PostsController < ApplicationController
 
     def new
       @post = Post.new
-      # @post = Post.new(params[:post])
     end
 
+
     def create
-      @post = Post.create!(post_params)
-      redirect_to post_path(@post)
+      @post = Post.create!(whitelisted_post_params)
+      if @post.save
+         flash[:notice] = "Your post has been created!"
+         redirect_to @post # go to show page for @post
+      else
+         flash[:notice] = "Rats! Fix your mistakes."
+         render :new
+       end
     end
 
     #show
@@ -22,13 +28,13 @@ class PostsController < ApplicationController
 
     # edit
     def edit
-      @posts = Post.find(params[:id])
+      @post = Post.find(params[:id])
     end
 
     # update
     def update
       @post = Post.find(params[:id])
-      @post.update(post_params)
+      @post.update(whitelisted_post_params)
       redirect_to post_path(@post)
     end
 
@@ -39,9 +45,9 @@ class PostsController < ApplicationController
       redirect_to posts_path
     end
 
-private
-  def post_params
-    params.require(:post).permit(:author, :title, :content)
-  end
+    private
 
+    def whitelisted_post_params
+      params.require(:post).permit(:author,:title,:content)
+    end
 end

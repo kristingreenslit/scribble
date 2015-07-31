@@ -1,12 +1,13 @@
-<%= form_for @post do |f| %>
-  <%= f.label :author %>
+<%= form_for(@post) do |f| %>
+  <%= f.label :author, "Post Author: "%>
   <%= f.text_field :author %>
-
-  <%= f.label :title %>
+<br>
+  <%= f.label :title, "Post Title: " %>
   <%= f.text_field :title %>
-
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-
-  <%= f.submit %>
+<br>
+  <%= f.label :content, "Post Content: " %>
+  <!-- <%= f.text_field :content %> -->
+  <%= f.text_area :content, size: "60x12" %>
+<br>
+  <%= f.submit "Create" %>
 <% end %>
