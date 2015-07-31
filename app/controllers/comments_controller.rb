@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     def create
       @post = Post.find(params[:post_id])
       @comment = Comment.create!(whitelisted_comment_params)
-      redirect_to comment_path(@comment)
+      redirect_to post_path(@post)
     end
     #show
     def show
@@ -44,6 +44,6 @@ class CommentsController < ApplicationController
 
   private
     def whitelisted_comment_params
-      params.require(:post).permit(:author,:content)
+      params.require(:comment).permit(:author,:content)
     end
 end
