@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   def index
       @posts = Post.all
+      @posts = User.find(session[:user]["id"]).posts
     end
 
     def new
@@ -10,6 +11,8 @@ class PostsController < ApplicationController
 
     def create
       @post = Post.create!(whitelisted_post_params)
+      @user = User.find(session[:user]["id"])
+      @post = @user.posts.create!(whitelisted_post_params)
       if @post.save
          flash[:notice] = "Your post has been created!"
          redirect_to @post # go to show page for @post

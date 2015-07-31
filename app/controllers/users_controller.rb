@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate
 
   def sign_up
   end
@@ -29,19 +30,19 @@ class UsersController < ApplicationController
     elsif !BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
       message = "Your password's wrong!"
     else
-      message = "You're signed in, #{@user.username}!"
+      message = "You're signed in, #{@user.username}! "
       cookies[:username] = {
       value: @user.username,
       expires: 100.years.from_now
-      }
-    end
-    flash[:notice] = message
-    redirect_to action: :sign_in
+    }
+      session[:user] = @user
+   end
+      flash[:notice] = message
+      redirect_to action: :sign_in
   end
 
-  def sign_out
-    flash[:notice] = "You're signed out!"
-    redirect_to root_url
-  end
-
+    def sign_out!
+      reset_session
+      redirect_to root_url
 end
+  end
